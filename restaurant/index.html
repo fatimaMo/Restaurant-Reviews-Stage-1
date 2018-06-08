@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Restaurant Reviews</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<!-- 
+<ul class="skip-links">
+<li><a href="#restaurants-list">skip to restaurants list</a></li>
+<li><a href="#footer">skip to footer</a></li>
+<li><a href="#filter_results">skip to filter results</a></li>
+</ul> -->
+  <header role="banner"> 
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+	<!-- accecbility  (receive keyboard focus) -->
+      <h1 tabindex=0>
+	  <a href="/">Restaurant Reviews</a></h1>
+	  <ul>
+	   <!-- let user skip to filter results -->
+	  <li><a href="#filter_results">skip to filter results</a></li>
+	  <!-- let user skip to restaurants list -->
+	  <li><a href="#restaurants-list" aria-current="page">skip to restaurants list</a></li>
+	  </ul>
+    </nav>
+  </header>
+
+  <main role="main" id="maincontent">
+    <section id="map-container">
+      <div id="map"></div>
+    </section>
+    <section>
+      <div id="filter_results" class="filter-options">
+        <h2 tabindex=0>Filter Results</h2>
+        <select  id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+          <option value="all">All Neighborhoods</option>
+        </select>
+        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
+          <option value="all">All Cuisines</option>
+        </select>
+      </div>
+      <ul id="restaurants-list"></ul>
+    </section>
+  </main>
+  
+  <!-- service worker -->
+  <script>
+  if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+</script>
+  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+  <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY4uEa8ucYduPEKc4mMc-O2eR5fg7Q2cU&libraries=places&callback=initMap"></script>
+
+
+  <footer role="contentinfo" id="footer">
+    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+
+</body>
+
+</html>
